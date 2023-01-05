@@ -49,7 +49,6 @@ function App() {
     "Selection Sort": "https://www.geeksforgeeks.org/selection-sort/?ref=lbp",
     "Quick Sort": "https://www.geeksforgeeks.org/quick-sort/?ref=lbp",
     "Merge Sort": "https://www.geeksforgeeks.org/merge-sort/?ref=lbp",
-    "Heap Sort": "https://www.geeksforgeeks.org/heap-sort/?ref=lbp",
   };
   useEffect(() => {
     resetArray(1);
@@ -145,7 +144,7 @@ function App() {
       return;
     }
     if (algorithmType === "Selection Sort") {
-      selectionSort(array, animationSpeed, setArray);
+      await selectionSort(array, animationSpeed, setArray);
       await sleep(500);
       setDisabled(false);
       return;
@@ -268,6 +267,17 @@ function App() {
     return i + 1;
   };
 
+  // Merge Sort
+  const mergeSort = async (arr, l, r, animationSpeed) => {
+    if (l >= r) {
+      return;
+    }
+    var m = l + parseInt((r - l) / 2);
+    await mergeSort(arr, l, m, animationSpeed);
+    await mergeSort(arr, m + 1, r, animationSpeed);
+    await merge(arr, l, m, r, animationSpeed);
+  };
+  // for Merge sort
   const merge = async (arr, l, m, r, animationSpeed) => {
     const bars = document.getElementsByClassName("bar");
     await sleep(animationSpeed);
@@ -334,18 +344,7 @@ function App() {
       k++;
     }
   };
-  // l is for left index and r is
-  // right index of the sub-array
-  // of arr to be sorted */
-  const mergeSort = async (arr, l, r, animationSpeed) => {
-    if (l >= r) {
-      return; //returns recursively
-    }
-    var m = l + parseInt((r - l) / 2);
-    await mergeSort(arr, l, m, animationSpeed);
-    await mergeSort(arr, m + 1, r, animationSpeed);
-    await merge(arr, l, m, r, animationSpeed);
-  };
+
   const stopFunction = () => {
     setDisabled(false);
     setArray(arrayCopy);
@@ -421,10 +420,6 @@ function App() {
                 {
                   value: "Merge Sort",
                   label: "Merge Sort",
-                },
-                {
-                  value: "Heap Sort",
-                  label: "Heap Sort",
                 },
               ]}
             />
@@ -596,41 +591,6 @@ function App() {
                   </p>
                   <p className="complexites">Time Complexity: O(N log(N))</p>
                   <p className="complexites">Auxiliary Space: O(n)</p>
-                </div>
-              </div>
-            );
-          case "Heap Sort":
-            return (
-              <div className="algorithmDescription">
-                <div className="descriptionHeading">
-                  <h1>{algorithmType} Algorithm</h1>
-                </div>
-                <div className="description">
-                  <p>
-                    Heap sort is a comparison-based sorting technique based on
-                    Binary Heap data structure. It is similar to the selection
-                    sort where we first find the minimum element and place the
-                    minimum element at the beginning. Repeat the same process
-                    for the remaining elements.
-                    <ul>
-                      <li>Heap sort is an in-place algorithm.</li>
-                      <li>
-                        Its typical implementation is not stable, but can be
-                        made stable.
-                      </li>
-                      <li>
-                        Typically 2-3 times slower than well-implemented
-                        <b> QuickSort</b>. The reason for slowness is a lack of
-                        locality of reference. (
-                        <a href={`${referenceLinks[algorithmType]}`}>
-                          Reference
-                        </a>
-                        )
-                      </li>
-                    </ul>
-                  </p>
-                  <p className="complexites">Time Complexity: O(N log N)</p>
-                  <p className="complexites">Auxiliary Space: O(1)</p>
                 </div>
               </div>
             );
