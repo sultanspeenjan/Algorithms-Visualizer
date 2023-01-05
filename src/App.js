@@ -1,33 +1,10 @@
 import "./App.scss";
 import { Slider, Select, Button, message } from "antd";
 import { useEffect, useState } from "react";
-// import {
-//   Algorithms,
-//   resetColors,
-//   resetArray,
-//   stopFunction,
-//   sort,
-//   testing,
-//   selectionSort,
-//   onChangeArraySize,
-//   onChangeDisplaySpeed,
-//   onChangeAlgorithmType,
-//   randomIntFromInterval,
-// } from "./Algorithms";
-//  here goes the logic
 
 // -------------------
 // SORTING ALGORITHMS
 // -------------------
-
-// Driver Code
-function test() {
-  let arr = [13, 7, 22, 9, 1, 5];
-  console.log("unsorted", arr);
-  let n = arr.length;
-  //   quickSort(arr, 0, n - 1);
-  console.log(arr, n);
-}
 
 // Main App Function
 function App() {
@@ -598,17 +575,6 @@ function App() {
             return null;
         }
       })()}
-      <p>Testing selection sort algo</p>
-      <p>Unsorted array: {printArray(unsortedArray)}</p>
-      <p>Sorted array: {printArray(sortedArray)}</p>
-      <button
-        onClick={() => {
-          mergeSort(array, 0, array.length - 1, animationSpeed);
-        }}
-        style={{ marginBottom: "3rem" }}
-      >
-        Merge Sort
-      </button>
     </div>
   );
 }
